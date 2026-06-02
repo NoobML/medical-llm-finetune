@@ -4,6 +4,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from data.data_processing import get_data
 import matplotlib.pyplot as plt
+from src.utils import prompt_formatting
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -62,25 +63,24 @@ def input_length_analysis(dataframe):
     plt.savefig(os.path.join(PLOT_DIR, "Input_length_distribution.png"))
     plt.show()
 
-
-def prompt_formatting(dataframe):
+def show_prompt_examples(dataframe):
     print("=" * 30)
     print(f"Prompt Formatting")
     print(f"First 3 rows are: ")
     print("\n")
-    for i in range(0, 3):
+    for i in range(3):
         print(f"Row: {i}:")
-        row = dataframe.iloc[i]
-        prompt = f"### Instruction:\n\n{row['instruction']}\n\n### Input:\n\n{row['input']}\n\n### Output:\n\n{row['output']}"
-        print(prompt)
+        row = prompt_formatting(dataframe.iloc[i])
+        print(row)
         print("\n\n")
+
 
 def run_eda():
     dataset, dataframe = load_data()
     dataset_analysis(dataset)
     dataframe_analysis(dataframe)
     input_length_analysis(dataframe)
-    prompt_formatting(dataframe)
+    show_prompt_examples(dataframe)
 
 
 if __name__ == "__main__":
