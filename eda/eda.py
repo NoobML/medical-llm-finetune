@@ -1,6 +1,10 @@
-from data.data_processing import get_data
+import sys
 import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from data.data_processing import get_data
 import matplotlib.pyplot as plt
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PLOT_DIR = os.path.join(BASE_DIR, "plots", "eda_plots")
@@ -38,6 +42,7 @@ def dataframe_analysis(dataframe):
     plt.tight_layout()
     plt.savefig(os.path.join(PLOT_DIR, "label_distribution.png"))
     plt.show()
+    plt.clf()
 
     print("=" * 30)
     print("Checking for duplicate valeues")

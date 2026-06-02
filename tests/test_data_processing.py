@@ -16,7 +16,3 @@ def test_get_csv():
     get_data()
     assert os.path.exists("data/Medical_data.csv")
 
-
-if __name__ == "__main__":
-    test_get_data()
-    test_get_csv()
