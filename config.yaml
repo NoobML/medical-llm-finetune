@@ -1,0 +1,14 @@
+model:
+  name: microsoft/Phi-3-mini-4k-instruct
+
+training:
+  epochs: 1
+  learning_rate: 2e-4
+  batch_size: 4
+  logging_steps: 5
+  max_length: 1280
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.1
