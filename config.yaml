@@ -12,3 +12,6 @@ lora:
   r: 16
   alpha: 32
   dropout: 0.1
+
+inference:
+  max_new_tokens: 100
