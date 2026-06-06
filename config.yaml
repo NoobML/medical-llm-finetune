@@ -15,3 +15,8 @@ lora:
 
 inference:
   max_new_tokens: 100
+
+rag:
+  chunk_size: 200
+  overlap: 40
+
