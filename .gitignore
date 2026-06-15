@@ -221,3 +221,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+results/embeddings/chunks.pkl
+results/embeddings/index.faiss
+results/embeddings/chunks.pkl
+results/embeddings/index.faiss
