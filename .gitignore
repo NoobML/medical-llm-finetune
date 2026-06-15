@@ -30,6 +30,8 @@ MANIFEST
 data/textbooks/
 data/raw_dataset/
 data/Medical_data.csv
+results/embeddings/
+
 
 # PyInstaller
 #   Usually these files are written by a python script from a template
