@@ -8,6 +8,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from peft import PeftModel
 import torch
 import yaml
+from rag.retriever import retrieve
 
 def load_config():
     config_path = os.path.join(BASE_DIR, 'config.yaml')
@@ -33,8 +34,8 @@ def load_model_for_inference():
     tokenizer = AutoTokenizer.from_pretrained(CONFIG['model']['name'])
     return model, tokenizer
 
-def format_input(question):
-    prompt = f"### Instruction:\n\nPlease answer with one of the option in the bracket\n\n### Input:\n\n{question}\n\n### Output:\n\n"
+def format_input(question, context=""):
+    prompt = f"### Instruction:\n\nPlease answer with one of the option in the bracket\n\n### Context:\n\n{context}\n\n### Input:\n\n{question}\n\n### Output:\n\n"
     return prompt
 
 def generate_answer(model, tokenizer, prompt):
@@ -47,8 +48,11 @@ def decode_output(tokenizer, output):
     return result
 
 def predict(question):
+    results = retrieve(question)
+    context = "\n\n".join([r['text'] for r in results])
+
     model, tokenizer = load_model_for_inference()
-    prompt = format_input(question)
+    prompt = format_input(question, context)
     output = generate_answer(model, tokenizer, prompt)
     answer = decode_output(tokenizer, output[0])
     return answer
